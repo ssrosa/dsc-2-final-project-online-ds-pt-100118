@@ -1,86 +1,53 @@
+# Hypothesis Tests for Northwind Food Distributior
 
-# Module 2 Final Project Specifications
+# Files:
+**index.ipynb**: A Jupyter Notebook with my code and analysis.
+**images**: Diagrams to illustrate how I created 'invoices.'
+**nontechnical_slideshow.pdf**: A deck to present and findings and recommendations to Northwind's nontechnical management.
+**Northwind_small.sqlite**: The database used in the analysis.
 
-## Introduction
+# The Data
 
-In this lesson, we'll review all the guidelines and specifications for the final project for Module 2. 
+Northwind is a fake company; its data was generated  by Microsoft. This project uses a smaller version of the data in a SQLite database of several tables. Exploratory data analysis revealed that the company had 9 salespeople selling 77 different products to 91 customers in North America and Europe.
 
-## Objectives
+# Methods
 
-* Understand all required aspects of the Final Project for Module 2
-* Understand all required deliverables
-* Understand what constitutes a successful project
+I used the read_sql function in Pandas to query the database and return tabular data in DataFrames. With these queries I isolated segments of the data as populations to compare in hypothesis tests.
 
-### Final Project Summary
+I used SciPy to run two-sample t tests on the populations and in one case used bootstrapping to generate more normal-shaped distributions of data for testing.
 
-Another module down--you're half way there!
+With the general goal of making recommendations to Northwind to boost its sales I needed to see invoices. Invoices would reveal transactions: who was selling what to whom in what quantity. This would be more useful than just pulling out gross sales by category, person, or time period. The data did not contain an 'invoices' table. In my queries I rearranged the data to create invoices so that I could measure totals sold by certain salespeople and subtotals of different categories of products sold.
 
-<img src='halfway-there.gif'>
+# Hypotheses: questions and answers
 
-For the culmination of Module 2, you just need to complete the final project!
+## Test 1:
 
-### The Project
+**Part 1: Do discounts have a statistically significant effect on the number of products customers order?**
 
-For this project, you'll be working with the Northwind database--a free, open-source dataset created by Microsoft containing data from a fictional company. You probably remember the Northwind database from our section on Advanced SQL. Here's the schema for the Northwind database:
+No.
 
-<img src='Northwind_ERD.png'>
+**Part 2: If so, what level of discount?**
 
-The goal of this project is to test your ability to gather information from a real-world database and use your knowledge of statistical analysis and hypothesis testing to generate analytical insights that can be of value to the company. 
+Yes: while this results seems to belie the result found at the all-discount level, some thought will lead one to realize that this is an intuitive result: it would be more odd if customers were ordering the same number of products at each level of discount as they were without. (It would be strangely precise and machine-like.)
 
-## The Deliverables
+## Test 2:
 
-The goal of your project is to query the database to get the data needed to perform a statistical analysis.  In this statistical analysis, you'll need to perform a hypothesis test (or perhaps several) to answer the following question:
+**Do the employees in the PNW offices get higher invoice totals on average than employees in the London office?**
 
-**_Do discounts have a statistically significant effect on the number of products customers order? If so, at what level(s) of discount?_**
+No.
 
-In addition to answering this question with a hypothesis test, you will also need to come up with **_at least 3 other hypotheses to test on your own_**.  These can by anything that you think could be imporant information for the company. 
+## Test 3:
 
-For this hypothesis, be sure to specify both the **_null hypothesis_** and the **_alternative hypothesis_** for your question.  You should also specify if this is one-tail or a two-tail test. 
+**Did average sales decline in 2014 compared to 2013?**
 
-To complete this project, you will need to turn in the following 3 deliverables:
+No.
 
-1. A **_Jupyter Notebook_** containing any code you've written for this project. 
-2. A **_Blog Post_** explaining your process, methodology, and findings.  
-3. An **_"Executive Summary" PowerPoint Presentation_** that explains the hypothesis tests you ran, your findings, and their relevance to company stakeholders.  
+## Test 4:
 
-### Jupyter Notebook Must-Haves
+**Do orders containing beverages bring in more revenue on average than orders without beverages?**
 
-For this project, your jupyter notebook should meet the following specifications:
+Yes.
 
-**_Organization/Code Cleanliness_**
+# Recommendations:
 
-* The notebook should be well organized, easy to follow, and code is commented where appropriate.  
-<br>  
-    * Level Up: The notebook contains well-formatted, professional looking markdown cells explaining any substantial code. All functions have docstrings that act as professional-quality documentation.  
-<br>      
-* The notebook is written to technical audiences with a way to both understand your approach and reproduce your results. The target audience for this deliverable is other data scientists looking to validate your findings.  
-<br>    
-* Any SQL code written to source data should also be included.  
-
-**_Findings_**
-
-* Your notebook should clearly show how you arrived at your results for each hypothesis test, including how you calculated your p-values.   
-<br>
-* You should also include any other statistics that you find relevant to your analysis, such as effect size. 
-
-### Blog Post Must-Haves
-
-Your blog post should include everything from how you identified what tables contained the information you need, to how you retrieved it using SQL (and any challenges you ran into while doing so), as well as your methodology and results for your hypothesis tests. 
-
-**_NOTE:_**  This blog post is your way of showcasing the work you've done on this project--chances are it will soon be read by a recruiter or hiring manager! Take the time to make sure that you craft your story well, and clearly explain your process and findings in a way that clearly shows both your technical expertise **_and_** your ability to communicate your results!
-
-### Executive Summary Must-Haves
-
-Your presentation should:
-
-* Contain between 5-10 professional quality slides detailing:
-<br>  
-    * A high-level overview of your methodology  
-    <br>  
-    * The results of your hypothesis tests  
-    <br>  
-    * Any real-world recommendations you would like to make based on your findings (ask yourself--why should the executive team care about what you found? How can your findings help the company?)  
-    <br>  
-* Take no more than 5 minutes to present  
-<br>  
-* Avoid technical jargon and explain results in a clear, actionable way for non-technical audiences.  
+The Jupyter Notebook and slide deck discuss specific recommendations for the (fake) comnpany to boost its sales: do not focus on discounts; investigate why the London sales reps gross less revenue each than the PNW sales reps; look for missing invoices from 2014; and sell more booze.
